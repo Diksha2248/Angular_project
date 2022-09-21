@@ -13,6 +13,11 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDialogModule} from '@angular/material/dialog';
+import { EmpModalPopupComponent } from './employee/emp-modal-popup/emp-modal-popup.component';
+import { MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -20,7 +25,8 @@ import {MatIconModule} from '@angular/material/icon';
     AppComponent,
     EmployeeComponent,
     ShowEmpComponent,
-    AddEditEmpComponent
+    AddEditEmpComponent,
+    EmpModalPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +37,11 @@ import {MatIconModule} from '@angular/material/icon';
     ReactiveFormsModule,
     MatTableModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule
   ],
   providers: [SharedService],
   bootstrap: [AppComponent]

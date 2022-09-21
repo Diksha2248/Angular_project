@@ -1,51 +1,87 @@
-<p>show-emp works!</p>
 
+<!--add-edit card -->
+<mat-card *ngIf="showAddEmpCard" class="float-right w-60 mr-30">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{empCardTitle}}</mat-card-title>
+  </mat-card-header>
+  <hr>
+  <mat-card-content>
+    <!-- form -->
+    <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Role</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Salary</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>City</mat-label>
+      <input matInput>
+    </mat-form-field>
+  </div>
+  </mat-card-content>
+  <hr>
+  <mat-card-actions>
+    <button mat-stroked-button color="primary">Add</button>
+    <button mat-stroked-button color="warn" (click)="closeCard()">Cancel</button>
+  </mat-card-actions>
+</mat-card>
+<div id="addBtnDivId">
+<button mat-stroked-button color="primary" (click)="openAddEmpDialog('0ms', '0ms')">Add Employee</button>
+</div>
+<!-- table -->
+<div class="centerItem">
 <table mat-table [dataSource]="EmployeesList" class="mat-elevation-z8">
-    <ng-container matColumnDef="emp_id">
-      <th mat-header-cell *matHeaderCellDef> Emp ID </th>
-      <td mat-cell *matCellDef="let element"> {{element.emp_id}} </td>
-    </ng-container>
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-    <ng-container matColumnDef="role">
-        <th mat-header-cell *matHeaderCellDef> Role </th>
-        <td mat-cell *matCellDef="let element"> {{element.role}} </td>
-    </ng-container>
-    <ng-container matColumnDef="salary">
-        <th mat-header-cell *matHeaderCellDef> Salary </th>
-        <td mat-cell *matCellDef="let element"> {{element.salary}} </td>
-    </ng-container>
-    <ng-container matColumnDef="city">
-        <th mat-header-cell *matHeaderCellDef> City </th>
-        <td mat-cell *matCellDef="let element"> {{element.city}} </td>
-    </ng-container>
-    <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell> 
-            <!-- <div class="example-flex-container">
-                <div class="example-button-container"> -->
-                    <button mat-icon-button  color="primary">
-                      <mat-icon>Add</mat-icon>
-                    </button>
-                <!-- </div>
-                <div class="example-button-container"> -->
-                  <button mat-icon-button color="primary">
-                    <mat-icon>Edit</mat-icon>
-                  </button>
-                <!-- </div>
-                <div class="example-button-container"> -->
-                    <button mat-icon-button color="warn">
-                      <mat-icon>delete</mat-icon>
-                    </button>
-                <!-- </div>
-            </div>     -->
-        </td>
-    </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+  <ng-container matColumnDef="emp_id">
+    <th mat-header-cell *matHeaderCellDef> Emp ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.emp_id}} </td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="role">
+    <th mat-header-cell *matHeaderCellDef> Role </th>
+    <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+  </ng-container>
+  <ng-container matColumnDef="salary">
+    <th mat-header-cell *matHeaderCellDef> Salary </th>
+    <td mat-cell *matCellDef="let element"> {{element.salary}} </td>
+  </ng-container>
+  <ng-container matColumnDef="city">
+    <th mat-header-cell *matHeaderCellDef> City </th>
+    <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Action</th>
+    <td mat-cell *matCellDef="let element">
+      <!-- <button mat-icon-button color="primary" (click)="openAddEmpDialog('0ms', '0ms')">
+        <mat-icon>add</mat-icon>
+      </button> -->
 
-  <h4>show-emp here!</h4>
+      <button mat-icon-button color="accent" (click)="editClick()">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+      <button mat-icon-button color="warn">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>
+
+<!-- data passing -->
+<!-- <app-emp-modal-popup [data]="mydata"></app-emp-modal-popup> -->
+
+

@@ -1,14 +1,27 @@
 table {
-    width: 60%;
+    width: 80%;
   }
-  .example-flex-container {
+ .centerItem{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+ 
+ .float-right{
+  float: right;
+ }
+
+ .mr-30{
+  margin-right: 30px;
+ }
+
+ .w-60{
+  width: 35%;
+ }
+ 
+#addBtnDivId{
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  
-  .example-button-container {
-    display: flex;
-    justify-content: center;
-    width: 120px;
-  }
+    justify-content: end;
+    margin-right: 175px;
+    margin-bottom: 15px;
+}
