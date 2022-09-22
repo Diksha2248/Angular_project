@@ -1,0 +1,9 @@
+.centerForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   }
+
+   .mr-30{
+    margin-right: 30px;
+   }

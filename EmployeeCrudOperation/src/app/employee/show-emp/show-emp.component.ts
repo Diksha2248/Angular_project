@@ -35,22 +35,23 @@ export class ShowEmpComponent implements OnInit {
       enterAnimationDuration,
       exitAnimationDuration,
       data:{
+        active:true,
         title:"Add Employee Details",
         btn:"Add"
       }
     });
   }
 
-  openEditEmpDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+  openEditEmpDialog(enterAnimationDuration: string, exitAnimationDuration: string,dataItem:any): void {
     this.dialog.open(EmpModalPopupComponent, {
       width: '400px',
       enterAnimationDuration,
       exitAnimationDuration,
       data:{
         title:"Edit Employee Details",
-        btn:"Edit"
+        btn:"Edit",
+        dataItem
       }
     });
   }
-
 }

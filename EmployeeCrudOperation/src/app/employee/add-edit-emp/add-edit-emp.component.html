@@ -1,1 +1,22 @@
-<p>add-edit-emp works!</p>
+<form #empForm="ngForm" (ngSubmit)="onSubmit(empForm.value)" class="centerForm">
+    <mat-form-field appearance="fill" class="form-group">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" name="name" ngModel>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Role</mat-label>
+        <input matInput type="text" name="role" ngModel>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Salary</mat-label>
+        <input matInput type="number" name="salary" ngModel>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>City</mat-label>
+        <input matInput type="text" name="city" ngModel>
+    </mat-form-field>
+    <div>
+        <button mat-stroked-button cdkFocusInitial color="primary" type="submit" class="mr-30">{{empData.btn}}</button>
+        <button mat-stroked-button mat-dialog-close color="warn">Cancel</button>
+    </div>
+</form>
