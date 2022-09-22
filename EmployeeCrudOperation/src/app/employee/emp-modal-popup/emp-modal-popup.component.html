@@ -1,5 +1,5 @@
 
-<h1 mat-dialog-title>Add Employee Details</h1>
+<h1 mat-dialog-title>{{result.title}}</h1>
 <hr>
 <div mat-dialog-content  class="centerForm">
     <mat-form-field appearance="fill">
@@ -21,8 +21,6 @@
 </div>
 <hr>
 <div mat-dialog-actions>
-  <button mat-stroked-button cdkFocusInitial color="primary">Add</button>
+  <button mat-stroked-button cdkFocusInitial color="primary">{{result.btn}}</button>
   <button mat-stroked-button  mat-dialog-close color="warn">Cancel</button>
 </div>
-
-<!-- <h3>{{data}}</h3> -->

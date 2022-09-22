@@ -1,5 +1,5 @@
-import { Component, OnInit,Input } from '@angular/core';
-import { ShowEmpComponent } from '../show-emp/show-emp.component';
+import { Component, OnInit,Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-emp-modal-popup',
@@ -9,11 +9,11 @@ import { ShowEmpComponent } from '../show-emp/show-emp.component';
 
 export class EmpModalPopupComponent implements OnInit {
 
-  constructor() { }
-
-  @Input() data:any;
+  constructor(@Inject(MAT_DIALOG_DATA) public data:any) { }
+  result:any;
 
   ngOnInit(): void {
+    this.result=this.data;
   }
 
 }

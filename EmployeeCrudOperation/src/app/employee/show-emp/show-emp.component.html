@@ -1,38 +1,5 @@
 
-<!--add-edit card -->
-<mat-card *ngIf="showAddEmpCard" class="float-right w-60 mr-30">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{empCardTitle}}</mat-card-title>
-  </mat-card-header>
-  <hr>
-  <mat-card-content>
-    <!-- form -->
-    <div>
-    <mat-form-field appearance="fill">
-      <mat-label>Name</mat-label>
-      <input matInput>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Role</mat-label>
-      <input matInput>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Salary</mat-label>
-      <input matInput>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>City</mat-label>
-      <input matInput>
-    </mat-form-field>
-  </div>
-  </mat-card-content>
-  <hr>
-  <mat-card-actions>
-    <button mat-stroked-button color="primary">Add</button>
-    <button mat-stroked-button color="warn" (click)="closeCard()">Cancel</button>
-  </mat-card-actions>
-</mat-card>
+<!-- Add employee -->
 <div id="addBtnDivId">
 <button mat-stroked-button color="primary" (click)="openAddEmpDialog('0ms', '0ms')">Add Employee</button>
 </div>
@@ -62,11 +29,7 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef>Action</th>
     <td mat-cell *matCellDef="let element">
-      <!-- <button mat-icon-button color="primary" (click)="openAddEmpDialog('0ms', '0ms')">
-        <mat-icon>add</mat-icon>
-      </button> -->
-
-      <button mat-icon-button color="accent" (click)="editClick()">
+      <button mat-icon-button color="accent" (click)="openEditEmpDialog('0ms', '0ms')">
         <mat-icon>edit</mat-icon>
       </button>
 
@@ -80,8 +43,4 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 </div>
-
-<!-- data passing -->
-<!-- <app-emp-modal-popup [data]="mydata"></app-emp-modal-popup> -->
-
 

@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class SharedService {
   readonly APIUrl="https://localhost:44321/api";
+  titleOfDialog='';
 
   constructor(private http:HttpClient) {}
 
