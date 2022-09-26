@@ -18,6 +18,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDialogModule} from '@angular/material/dialog';
 import { EmpModalPopupComponent } from './employee/emp-modal-popup/emp-modal-popup.component';
 import { MatInputModule} from '@angular/material/input';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { MatInputModule} from '@angular/material/input';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
