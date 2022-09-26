@@ -25,7 +25,6 @@ export class ShowEmpComponent implements OnInit {
   //var of add-edit emp 
  
   ngOnInit(): void {
-  
     console.log(this.EmployeesList);
   }
 
@@ -54,4 +53,22 @@ export class ShowEmpComponent implements OnInit {
       }
     });
   }
+
+  deleteEmployeeDetails(dataItem:any){
+    if(confirm('Are you sure?'))
+    {
+      this.service.deleteEmployee(dataItem.emp_id).subscribe(data=>{
+        alert("Employee record deleted successfully!");
+        this.refreshList();
+      }
+      )
+    }
+  }
+
+  refreshList(){
+    this.service.getEmpList().subscribe(data=>{
+      this.EmployeesList=data;
+    })
+  }
+
 }

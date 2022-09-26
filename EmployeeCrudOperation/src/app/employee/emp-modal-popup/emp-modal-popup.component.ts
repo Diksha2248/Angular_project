@@ -21,6 +21,7 @@ export class EmpModalPopupComponent implements OnInit {
     //   this.title="Add Employee Details";
     //   this.btn="Add";
     // }
+    // console.log(this.result)
   }
 
 }
