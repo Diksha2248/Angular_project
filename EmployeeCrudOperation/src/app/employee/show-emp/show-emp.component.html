@@ -2,10 +2,11 @@
 <div id="addBtnDivId">
   <button mat-stroked-button color="primary" (click)="openAddEmpDialog('0ms', '0ms')">Add Employee</button>
 </div>
-<!-- table -->
-<!-- <section class="table-container centerItem"> -->
+
+<!-- Employee table -->
 <div class="centerItem">
-    <table mat-table [dataSource]="EmployeesList" class="mat-elevation-z8">
+  <section class="table-container mat-elevation-z8" tabindex="0">
+    <table mat-table [dataSource]="EmployeesList">
       <ng-container matColumnDef="emp_id">
         <th mat-header-cell *matHeaderCellDef> Emp ID </th>
         <td mat-cell *matCellDef="let element"> {{element.emp_id}} </td>
@@ -39,8 +40,8 @@
         </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+  </section>
 </div>
-<!-- </section> -->
