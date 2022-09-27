@@ -1,3 +1,16 @@
-.textCenter{
+/* .textCenter{
     text-align: center;
-   }
+   } */
+.centerItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.headingBackgroundColor {
+    background-color: blanchedalmond;
+}
+
+.ht-50 {
+    height: 50px;
+}

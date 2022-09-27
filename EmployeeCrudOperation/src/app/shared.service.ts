@@ -12,6 +12,8 @@ export class SharedService {
  
   constructor(private http:HttpClient) {}
 
+  EmployeesList:any=[];
+
   getEmpList():Observable<any[]>{
     console.log(9999);
     return this.http.get<any>(this.APIUrl+'/Employees');
@@ -31,4 +33,8 @@ export class SharedService {
     return this.http.delete<any>(this.APIUrl+'/Employees/'+id);
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.EmployeesList.filter = filterValue.trim().toLowerCase();
+  }
 }

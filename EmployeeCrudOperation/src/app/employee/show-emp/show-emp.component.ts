@@ -1,32 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild,AfterViewInit} from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { EmpModalPopupComponent } from '../emp-modal-popup/emp-modal-popup.component';
 import { ToastrService } from 'ngx-toastr';
-
+import { MatTableDataSource } from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-show-emp',
   templateUrl: './show-emp.component.html',
   styleUrls: ['./show-emp.component.css']
 })
-export class ShowEmpComponent implements OnInit {
+export class ShowEmpComponent implements OnInit,AfterViewInit {
 
-  EmployeesList:any=[];
-  constructor(private service:SharedService,public dialog:MatDialog,private toastr:ToastrService) {
+  // EmployeesList:any=[];
+  constructor(public service:SharedService,public dialog:MatDialog,private toastr:ToastrService) {
     
-      this.service.getEmpList().subscribe(data=>{
-        this.EmployeesList=data;
-        console.log(data);
-      })
+      // this.service.getEmpList().subscribe(data=>{
+      //  this.EmployeesList=new MatTableDataSource(data); 
+      //  this.EmployeesList.paginator = this.paginator;
+      //   console.log(data);
+      // })
   }
 
   displayedColumns: string[] = ['emp_id', 'name', 'role', 'salary','city','actions'];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   
   //var of add-edit emp 
  
   ngOnInit(): void {
       this.refreshList();
+  }
+  ngAfterViewInit() {
+    this.service.EmployeesList.paginator = this.paginator;
   }
 
   openAddEmpDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
@@ -38,7 +45,7 @@ export class ShowEmpComponent implements OnInit {
         active:true,
         title:"Add Employee Details",
         btn:"Add",
-        tblData:this.EmployeesList
+        tblData:this.service.EmployeesList
       }
     });
   }
@@ -69,8 +76,14 @@ export class ShowEmpComponent implements OnInit {
 
   refreshList(){
     this.service.getEmpList().subscribe(data=>{
-      this.EmployeesList=data;
+      this.service.EmployeesList=new MatTableDataSource(data);
+      this.service.EmployeesList.paginator = this.paginator;
     })
   }
 
+  // applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   this.service.EmployeesList.filter = filterValue.trim().toLowerCase();
+  // }
+  
 }

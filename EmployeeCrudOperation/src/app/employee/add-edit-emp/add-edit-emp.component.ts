@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,ViewChild,AfterViewInit} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/app/shared.service';
+import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-add-edit-emp',
@@ -17,9 +18,9 @@ export class AddEditEmpComponent implements OnInit {
   role = ''
   salary='';
   city = '';
-
+ 
   ngOnInit(): void {
-    console.log(this.empData)
+    this.refreshList();
     if (this.empData.title == "Edit Employee Details"){
       this.emp_id=this.empData.dataItem.emp_id;
       this.name = this.empData.dataItem.name;
@@ -27,8 +28,10 @@ export class AddEditEmpComponent implements OnInit {
       this.salary = this.empData.dataItem.salary;
       this.city = this.empData.dataItem.city;
     }
-    this.refreshList();
   }
+  // ngAfterViewInit():void{
+  //   this.service.EmployeesList.paginator = this.paginator;
+  // }
   onSubmit(formData: NgForm) {
     console.log(formData);
     if (this.empData.title == "Add Employee Details") {
@@ -46,7 +49,7 @@ export class AddEditEmpComponent implements OnInit {
         name:this.name ,
         role:this.role,
         salary:this.salary,
-        city:this.city 
+        city:this.city
       }
       this.service.updateEmployee(this.emp_id,val).subscribe(
         res => {
@@ -66,7 +69,7 @@ export class AddEditEmpComponent implements OnInit {
 
   refreshList(){
     this.service.getEmpList().subscribe(data=>{
-      this.empData.tblData=data;
+      this.service.EmployeesList=data;
     })
   }
 }

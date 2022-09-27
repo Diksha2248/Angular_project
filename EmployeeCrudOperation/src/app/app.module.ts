@@ -19,6 +19,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { EmpModalPopupComponent } from './employee/emp-modal-popup/emp-modal-popup.component';
 import { MatInputModule} from '@angular/material/input';
 import { ToastrModule } from 'ngx-toastr';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 
 @NgModule({
@@ -27,7 +29,7 @@ import { ToastrModule } from 'ngx-toastr';
     EmployeeComponent,
     ShowEmpComponent,
     AddEditEmpComponent,
-    EmpModalPopupComponent
+    EmpModalPopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,9 @@ import { ToastrModule } from 'ngx-toastr';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule
+    
   ],
   providers: [SharedService],
   bootstrap: [AppComponent]

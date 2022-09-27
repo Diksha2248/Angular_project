@@ -26,8 +26,19 @@ table {
  }
  
 #addBtnDivId{
-    display: flex;
+    /* display: flex;
     justify-content: end;
     margin-right: 175px;
+    margin-bottom: 15px; */
+    display: flex;
+    justify-content: end;
+    margin-right: 150px;
     margin-bottom: 15px;
+    margin-top: 15px;
+    margin-left: 150px;
 }
+
+.mat-form-field {
+    font-size: 14px;
+    width: 80%;
+  }
