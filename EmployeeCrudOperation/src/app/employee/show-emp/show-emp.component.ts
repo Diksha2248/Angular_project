@@ -13,7 +13,7 @@ import {MatPaginator} from '@angular/material/paginator';
 })
 export class ShowEmpComponent implements OnInit,AfterViewInit {
 
-  // EmployeesList:any=[];
+  EmployeesList:any=[];
   constructor(public service:SharedService,public dialog:MatDialog,private toastr:ToastrService) {
     
       // this.service.getEmpList().subscribe(data=>{
@@ -33,7 +33,7 @@ export class ShowEmpComponent implements OnInit,AfterViewInit {
       this.refreshList();
   }
   ngAfterViewInit() {
-    this.service.EmployeesList.paginator = this.paginator;
+    this.EmployeesList.paginator = this.paginator;
   }
 
   openAddEmpDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
@@ -45,9 +45,11 @@ export class ShowEmpComponent implements OnInit,AfterViewInit {
         active:true,
         title:"Add Employee Details",
         btn:"Add",
-        tblData:this.service.EmployeesList
+        tblData:this.EmployeesList
       }
-    });
+    }).afterClosed().subscribe(val=>{
+      this.refreshList()
+    })
   }
 
   openEditEmpDialog(enterAnimationDuration: string, exitAnimationDuration: string,dataItem:any): void {
@@ -60,7 +62,9 @@ export class ShowEmpComponent implements OnInit,AfterViewInit {
         btn:"Edit",
         dataItem
       }
-    });
+    }).afterClosed().subscribe(val=>{
+      this.refreshList()
+    })
   }
 
   deleteEmployeeDetails(dataItem:any){
@@ -76,14 +80,14 @@ export class ShowEmpComponent implements OnInit,AfterViewInit {
 
   refreshList(){
     this.service.getEmpList().subscribe(data=>{
-      this.service.EmployeesList=new MatTableDataSource(data);
-      this.service.EmployeesList.paginator = this.paginator;
+      this.EmployeesList=new MatTableDataSource(data);
+      this.EmployeesList.paginator = this.paginator;
     })
   }
 
-  // applyFilter(event: Event) {
-  //   const filterValue = (event.target as HTMLInputElement).value;
-  //   this.service.EmployeesList.filter = filterValue.trim().toLowerCase();
-  // }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.EmployeesList.filter = filterValue.trim().toLowerCase();
+  }
   
 }

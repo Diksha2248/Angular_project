@@ -20,6 +20,7 @@ import { EmpModalPopupComponent } from './employee/emp-modal-popup/emp-modal-pop
 import { MatInputModule} from '@angular/material/input';
 import { ToastrModule } from 'ngx-toastr';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 
 
@@ -46,7 +47,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatToolbarModule
     
   ],
   providers: [SharedService],

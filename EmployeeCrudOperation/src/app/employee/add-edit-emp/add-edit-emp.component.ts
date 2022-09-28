@@ -20,7 +20,6 @@ export class AddEditEmpComponent implements OnInit {
   city = '';
  
   ngOnInit(): void {
-    this.refreshList();
     if (this.empData.title == "Edit Employee Details"){
       this.emp_id=this.empData.dataItem.emp_id;
       this.name = this.empData.dataItem.name;
@@ -38,7 +37,6 @@ export class AddEditEmpComponent implements OnInit {
       this.service.addEmployee(formData).subscribe(
         res => {
           this.toastr.success('Data added successfully','Employee details saved')
-          this.refreshList();
         }
       )
     }
@@ -54,22 +52,14 @@ export class AddEditEmpComponent implements OnInit {
       this.service.updateEmployee(this.emp_id,val).subscribe(
         res => {
           this.toastr.success('Edited successfully','Employee details updated')
-          this.refreshList();
-          console.log(val);
         },
-        // err=>{
-        //   console.log(err,"error in update")
+        // error=>{
+        //   console.log(error,"error in update")
         // }
       )
     }
     else {
       this.toastr.error('Some error occured');
     }
-  }
-
-  refreshList(){
-    this.service.getEmpList().subscribe(data=>{
-      this.service.EmployeesList=data;
-    })
   }
 }

@@ -9,7 +9,7 @@ table {
 
  .table-container{
     width: 80%;
-    height: 400px;
+    height: 350px;
     overflow: auto;
  }
  
@@ -41,4 +41,8 @@ table {
 .mat-form-field {
     font-size: 14px;
     width: 80%;
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
   }

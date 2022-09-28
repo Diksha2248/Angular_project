@@ -1,19 +1,20 @@
 <form #empForm="ngForm" (ngSubmit)="onSubmit(empForm.value)" class="centerForm">
     <mat-form-field appearance="fill" class="form-group">
         <mat-label>Name</mat-label>
-        <input matInput type="text" class="form-control"  name="name" [(ngModel)]="name">
+        <input matInput type="text" class="form-control" required name="name" [(ngModel)]="name">
+        <!-- <span *ngIf="text.invalid">Name can not be empty</span> -->
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Role</mat-label>
-        <input matInput type="text" name="role"  [(ngModel)]="role">
+        <input matInput type="text" required name="role"  [(ngModel)]="role">
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Salary</mat-label>
-        <input matInput type="number" name="salary"  [(ngModel)]="salary">
+        <input matInput type="number" required name="salary"  [(ngModel)]="salary">
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>City</mat-label>
-        <input matInput type="text" name="city"  [(ngModel)]="city">
+        <input matInput type="text" required name="city"  [(ngModel)]="city">
     </mat-form-field>
     <div>
         <button mat-stroked-button cdkFocusInitial mat-dialog-close color="primary" type="submit" class="mr-30" *ngIf="empData.active">Add</button>

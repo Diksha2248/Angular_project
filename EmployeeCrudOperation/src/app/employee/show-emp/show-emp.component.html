@@ -1,19 +1,30 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>supervised_user_circle</mat-icon>
+  </button>
+  <span>Employee Management Portal</span>
+  <span class="example-spacer"></span>
+  <!-- <div id="addBtnDivId"> -->
+  <button mat-flat-button color="accent" (click)="openAddEmpDialog('0ms', '0ms')">Add Employee</button>
+  <!-- </div> -->
+</mat-toolbar>
+
 <!-- Add employee -->
-<div id="addBtnDivId">
+<!-- <div id="addBtnDivId">
   <button mat-stroked-button color="primary" (click)="openAddEmpDialog('0ms', '0ms')">Add Employee</button>
-</div>
+</div> -->
 <!-- table filter -->
 <div class="centerItem">
-<mat-form-field appearance="standard">
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="service.applyFilter($event)" placeholder="Search employee" #input>
-</mat-form-field>
+  <mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search employee" #input>
+  </mat-form-field>
 </div>
 
 <!-- Employee table -->
 <div class="centerItem">
   <section class="table-container mat-elevation-z8" tabindex="0">
-    <table mat-table [dataSource]="service.EmployeesList">
+    <table mat-table [dataSource]="EmployeesList">
       <ng-container matColumnDef="emp_id">
         <th mat-header-cell *matHeaderCellDef> Emp ID </th>
         <td mat-cell *matCellDef="let element"> {{element.emp_id}} </td>
@@ -37,7 +48,7 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let element">
-          <button mat-icon-button color="accent" (click)="openEditEmpDialog('0ms', '0ms',element)">
+          <button mat-icon-button color="primary" (click)="openEditEmpDialog('0ms', '0ms',element)">
             <mat-icon>edit</mat-icon>
           </button>
 
@@ -53,12 +64,10 @@
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
       </tr>
-   
+
     </table>
-      <!-- pagination -->
-    <mat-paginator   [pageSizeOptions]="[5, 10, 20]" [pageSize]="5"
-    showFirstLastButtons 
-    aria-label="Select page">
-  </mat-paginator>
+    <!-- pagination -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="5" showFirstLastButtons aria-label="Select page">
+    </mat-paginator>
   </section>
 </div>
