@@ -1,8 +1,7 @@
-<form #empForm="ngForm" (ngSubmit)="onSubmit(empForm.value)" class="centerForm">
+<!-- <form #empForm="ngForm" (ngSubmit)="onSubmit(empForm.value)" class="centerForm">
     <mat-form-field appearance="fill" class="form-group">
         <mat-label>Name</mat-label>
         <input matInput type="text" class="form-control" required name="name" [(ngModel)]="name">
-        <!-- <span *ngIf="text.invalid">Name can not be empty</span> -->
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Role</mat-label>
@@ -17,8 +16,38 @@
         <input matInput type="text" required name="city"  [(ngModel)]="city">
     </mat-form-field>
     <div>
-        <button mat-stroked-button cdkFocusInitial mat-dialog-close color="primary" type="submit" class="mr-30" *ngIf="empData.active">Add</button>
-        <button mat-stroked-button cdkFocusInitial mat-dialog-close color="primary" type="submit" class="mr-30" *ngIf="!empData.active">Edit</button>
+        <button mat-stroked-button cdkFocusInitial mat-dialog-close color="primary" type="submit" class="mr-30" *ngIf="empData.active">Save</button>
+        <button mat-stroked-button cdkFocusInitial mat-dialog-close color="primary" type="submit" class="mr-30" *ngIf="!empData.active">Save</button>
+        <button mat-stroked-button mat-dialog-close color="warn">Cancel</button>
+    </div>
+</form> -->
+
+<!-- <span *ngIf="text.invalid">Name can not be empty</span> -->
+
+<form [formGroup]="submitEmpDetailsForm" (ngSubmit)="onSubmitForm(submitEmpDetailsForm.value)" class="centerForm">
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" placeholder="Enter name"  formControlName="name">
+        <mat-hint  *ngIf="emp_name.invalid && emp_name.touched" class="errClr" >*Name can not be empty</mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Role</mat-label>
+        <input matInput type="text" placeholder="Enter role" formControlName="role">
+        <mat-hint  *ngIf="emp_role.invalid && emp_role.touched" class="errClr" >*Role can not be empty</mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Salary</mat-label>
+        <input matInput type="number" placeholder="Enter salary" formControlName="salary">
+        <mat-hint  *ngIf="emp_salary.invalid && emp_salary.touched" class="errClr" >*Salary can not be empty</mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>City</mat-label>
+        <input matInput placeholder="Enter city"  formControlName="city">
+        <mat-hint  *ngIf="emp_city.invalid && emp_city.touched" class="errClr" >*City can not be empty</mat-hint>
+      </mat-form-field>
+    <div>
+        <button mat-stroked-button cdkFocusInitial color="primary" type="submit" class="mr-30" *ngIf="empData.active">Save</button>
+        <button mat-stroked-button cdkFocusInitial [mat-dialog-close]="empData.dataItem" color="primary" type="submit" class="mr-30" *ngIf="!empData.active">Save</button>
         <button mat-stroked-button mat-dialog-close color="warn">Cancel</button>
     </div>
 </form>

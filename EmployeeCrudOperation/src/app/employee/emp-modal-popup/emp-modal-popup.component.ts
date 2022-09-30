@@ -1,5 +1,8 @@
 import { Component, OnInit,Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { SharedService } from 'src/app/shared.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-emp-modal-popup',
@@ -9,19 +12,18 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export class EmpModalPopupComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data:any) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data:any,private service:SharedService,private toastr:ToastrService,private dialogRef:MatDialogRef<EmpModalPopupComponent>) { }
   result:any;
-  title:any;
-  btn:any;
 
   ngOnInit(): void {
     this.result=this.data;
-    // if(this.result.active==true)
-    // {
-    //   this.title="Add Employee Details";
-    //   this.btn="Add";
-    // }
-    // console.log(this.result)
   }
 
+  deleteEmployeeDetails(emp_id){
+      this.service.deleteEmployee(emp_id).subscribe(data=>{
+        this.toastr.success('Deleted successfully','Employee details removed');
+        this.dialogRef.close();
+      }
+      )
+    }
 }

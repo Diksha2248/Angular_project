@@ -38,6 +38,7 @@ export class ShowEmpComponent implements OnInit,AfterViewInit {
 
   openAddEmpDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(EmpModalPopupComponent, {
+      disableClose: true,
       width: '400px',
       enterAnimationDuration,
       exitAnimationDuration,
@@ -54,6 +55,7 @@ export class ShowEmpComponent implements OnInit,AfterViewInit {
 
   openEditEmpDialog(enterAnimationDuration: string, exitAnimationDuration: string,dataItem:any): void {
     this.dialog.open(EmpModalPopupComponent, {
+      disableClose: true,
       width: '400px',
       enterAnimationDuration,
       exitAnimationDuration,
@@ -64,24 +66,54 @@ export class ShowEmpComponent implements OnInit,AfterViewInit {
       }
     }).afterClosed().subscribe(val=>{
       this.refreshList()
+      console.log("refreshList")
     })
   }
 
-  deleteEmployeeDetails(dataItem:any){
-    if(confirm('Are you sure?'))
-    {
-      this.service.deleteEmployee(dataItem.emp_id).subscribe(data=>{
-        this.toastr.success('Deleted successfully','Employee details removed');
-        this.refreshList();
+  openDeleteDialog(enterAnimationDuration: string, exitAnimationDuration: string,dataItem:any): void {
+    this.dialog.open(EmpModalPopupComponent,{
+      disableClose: true,
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data:{
+        title:"Delete Details",
+        showDeletePoppup:true,
+        dataItem
       }
-      )
-    }
+    }).afterClosed().subscribe(val=>{
+      dataItem=val;
+      this.refreshList()
+      console.log("refreshList")
+    })
   }
 
+  // deleteEmployeeDetails(dataItem:any){
+  //   if(confirm('Are you sure?'))
+  //   {
+  //     this.service.deleteEmployee(dataItem.emp_id).subscribe(data=>{
+  //       this.toastr.success('Deleted successfully','Employee details removed');
+  //       this.refreshList();
+  //     }
+  //     )
+  //   }
+  // }
+
+  // get employee list method
   refreshList(){
     this.service.getEmpList().subscribe(data=>{
       this.EmployeesList=new MatTableDataSource(data);
       this.EmployeesList.paginator = this.paginator;
+    })
+
+    this.service.getEmpList().subscribe({
+      next:(data)=>{
+        this.EmployeesList=new MatTableDataSource(data);
+        this.EmployeesList.paginator = this.paginator;
+      },
+      error:(err)=>{
+        this.toastr.error('Error while fetching records');
+      }
     })
   }
 
