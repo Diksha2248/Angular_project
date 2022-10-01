@@ -5,6 +5,8 @@ import { EmpModalPopupComponent } from '../emp-modal-popup/emp-modal-popup.compo
 import { ToastrService } from 'ngx-toastr';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+
 
 @Component({
   selector: 'app-show-emp',
@@ -25,6 +27,7 @@ export class ShowEmpComponent implements OnInit,AfterViewInit {
 
   displayedColumns: string[] = ['emp_id', 'name', 'role', 'salary','city','actions'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort:MatSort;
 
   
   //var of add-edit emp 
@@ -34,6 +37,7 @@ export class ShowEmpComponent implements OnInit,AfterViewInit {
   }
   ngAfterViewInit() {
     this.EmployeesList.paginator = this.paginator;
+    this.EmployeesList.sort=this.sort;
   }
 
   openAddEmpDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
@@ -101,15 +105,11 @@ export class ShowEmpComponent implements OnInit,AfterViewInit {
 
   // get employee list method
   refreshList(){
-    this.service.getEmpList().subscribe(data=>{
-      this.EmployeesList=new MatTableDataSource(data);
-      this.EmployeesList.paginator = this.paginator;
-    })
-
     this.service.getEmpList().subscribe({
       next:(data)=>{
         this.EmployeesList=new MatTableDataSource(data);
         this.EmployeesList.paginator = this.paginator;
+        this.EmployeesList.sort=this.sort;
       },
       error:(err)=>{
         this.toastr.error('Error while fetching records');
@@ -120,6 +120,10 @@ export class ShowEmpComponent implements OnInit,AfterViewInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.EmployeesList.filter = filterValue.trim().toLowerCase();
+
+    if (this.EmployeesList.paginator) {
+      this.EmployeesList.paginator.firstPage();
+    }
   }
   
 }

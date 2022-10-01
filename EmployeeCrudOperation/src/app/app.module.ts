@@ -21,6 +21,8 @@ import { MatInputModule} from '@angular/material/input';
 import { ToastrModule } from 'ngx-toastr';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatSortModule } from '@angular/material/sort';
+
 
 
 
@@ -49,6 +51,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatDialogModule,
     MatPaginatorModule,
     MatToolbarModule,
+    MatSortModule
   ],
   providers: [SharedService],
   bootstrap: [AppComponent]
